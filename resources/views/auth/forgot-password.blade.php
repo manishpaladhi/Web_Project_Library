@@ -77,7 +77,7 @@
         <form method="POST" action="{{ route('password.email') }}">
 
         <div>
-            {{ __('Please enter your email id below in order to send the password reset link to your mail address.') }}
+            {{ __('Please enter your email id below.') }}
         </div>
 
         @if (session('status'))

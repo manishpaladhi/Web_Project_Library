@@ -16,7 +16,8 @@
         </style>
 
         <style>body{
-            
+        
+            background-color: rgb(48, 46, 46);
             padding: 0;
             margin: 0;
             font-family: 'Courier New', Courier, monospace;
@@ -94,7 +95,8 @@
 
 
     </head>
-    <body class="container">
+    <body >
+        <div class="container">
         <h2>Login Form</h2>
 
         @if (session('status'))
@@ -131,6 +133,8 @@
                     {{ __('Log in') }}
                 </button>
             </div>
+
+    </div>
         </form>
     
         

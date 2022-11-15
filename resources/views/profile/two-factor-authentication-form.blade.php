@@ -79,7 +79,7 @@
                 
                 <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-jet-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                        {{ __('Switch On') }}
                     </x-jet-button>
                 </x-jet-confirms-password>
             @else
@@ -112,7 +112,7 @@
                 @else
                     <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-jet-danger-button wire:loading.attr="disabled">
-                            {{ __('Disable') }}
+                            {{ __('Switch Off') }}
                         </x-jet-danger-button>
                     </x-jet-confirms-password>
                 @endif
