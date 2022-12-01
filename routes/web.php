@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Elastic\Elasticsearch\ClientBuilder;
 use App\Http\Controllers\FileUpload;
 
+use App\Http\Middleware\XSS;
+
 
 
 /*
@@ -36,9 +38,15 @@ Route::get('/elastic', function () {
     var_dump($client);
 });
 
-Route::post('/serp', 'App\Http\Controllers\MainController@serp');
 
-Route::post('/serplogin', 'App\Http\Controllers\MainController@serplogin');
+Route::group(['middleware'=>['XSS']], function(){
+
+    Route::post('/serp', 'App\Http\Controllers\MainController@serp');
+
+    Route::post('/serplogin', 'App\Http\Controllers\MainController@serplogin');
+});
+
+
 
 
 
@@ -56,4 +64,6 @@ Route::post('/upload_data', 'App\Http\Controllers\MainController@upload_data');
 Route::get('/etd_summary','App\Http\Controllers\MainController@etd_summary');
 
 Route::get('/openpdf/{idvalue}','App\Http\Controllers\MainController@openpdf');
+
+Route::get('/logout','App\Http\Controllers\MainController@logout');
 

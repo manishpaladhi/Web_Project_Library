@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+
+   
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="/download.png">
 
         <title>Digital Library</title>
 
@@ -10,6 +14,10 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+       
+
+
+    </head>
 
         <!-- Styles -->
         <style>
@@ -24,27 +32,34 @@
                 justify-content: center;
                 align-items: center;
                 font-family:'Courier New', Courier, monospace;
-          
+
+              
         }
+
+
+
+
         .container{
-            padding: 0;
+            
             font-family:'Courier New', Courier, monospace;
-            /* background-color: rgb(48, 46, 46); */
             color: white;
             text-align: center;
-            margin-left: 480px;
-            margin-top: 200px;
-            padding-top: 25vh;
-
-
-            width: 400px;
-            /* display: flex; */
+            
+            margin:150px auto;
+           
+            padding: 10px;
+            width: 500px;
+            display: flex; 
             flex-direction: column;
-            align-items: center;
+            /* align-items: center; */
             background-color: rgb(22, 21, 21);
             border-radius: 15px;
-            padding: 25px 10px;
+            
+            /* padding: 25px 10px; */
             box-shadow: 0 0 15px rgb(80, 79, 79);
+
+
+
         }
         
        
@@ -62,20 +77,26 @@
             font-size: 18px;
             cursor: pointer;
             margin: 5px 25px;
+
+           
         }
         button:hover{
             background-color: silver;
         }
 
         .search-box{
-  width: fit-content;
-  margin-top: 100px;
-  margin-left: 470px;
-  position: relative;
+ 
+ 
+            margin:0 auto;
+            padding: 10px;
+            margin-top: 50px;
+            margin-left: 450px;
+            width: 700px;
+
 }
 .input-search{
-  height: 60px;
-  width: 30px;
+  height: 40px;
+  width: 160px;
   border-style: none;
   padding: 10px;
   font-size: 18px;
@@ -86,15 +107,19 @@
   background-color: #22a6b3;
   padding-right: 40px;
   color:white;
+  margin:0 auto;
+  
 }
 .input-search::placeholder{
   color:rgba(255,255,255,.5);
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: 100;
+
 }
 .btn-search{
-  width: 15px;
+
+  width: 10px;
   height: 60px;
   border-style: none;
   font-size: 20px;
@@ -102,10 +127,14 @@
   outline: none;
   cursor: pointer;
   border-radius: 50%;
-  position: absolute;
-  top: 5px;
-  right: -15px;
   
+  
+
+  margin: 0 auto;
+
+ 
+           
+            
 }
 .btn-search:focus ~ .input-search{
   width: 800px;
@@ -123,12 +152,14 @@
 }
 
 
+
+
         </style>
 
 
 
 
-    </head>
+   
     <body>
 
 
@@ -136,6 +167,7 @@
     <div class="container">
         <div class="buttons">
             <h2>Digital Library</h2>
+            
             @if (Route::has('login'))
                 <div class=" ">
                     @auth
@@ -170,7 +202,20 @@
     </div>
 
 
-        
     </body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    @include('footer') 
 </html>
 

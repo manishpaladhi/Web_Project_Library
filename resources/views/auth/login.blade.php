@@ -2,10 +2,47 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+    <link rel="icon" href="/download.png">
+    
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Digital Library</title>
+
+        <script>
+
+            function callbackThen(response) {
+                response.json().then(function(data){
+                    console.log(data);
+
+                    if(data.success && data.score > 0.5) {
+                        console.log('Validated Successfuly.');
+                    } else {
+                        document.getElementById('registerForm').addEventListener('{{ __('Log in') }}', function (event) {
+                            event.preventDefault();
+                            alert('Recaptcha Error.');
+                        });
+                        
+                    }
+                });
+                    
+            }
+
+            function callbackCatch(erorr) {
+                console.log('Error: ' + error);
+            }
+
+        </script>
+
+        {!! htmlScriptTagJsApi([
+
+            'callback_then' => 'callbackThen',
+            'callback_catch' => 'callbackCatch',
+
+        ]) !!}
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -30,8 +67,8 @@
             width: 400px;
             display: flex;
             flex-direction: column;
-            margin: auto;
-            margin-left: 480px;
+            margin:0 auto;
+       
             margin-top: 180px;
             align-items: center;
             background-color: rgb(22, 21, 21);
@@ -105,7 +142,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" id="registerForm">
             @csrf
 
             <div>
@@ -139,4 +176,8 @@
     
         
     </body>
+    <br>
+    <br><br><br><br><br><br><br><br><br>
+
+    @include('footer') 
 </html>

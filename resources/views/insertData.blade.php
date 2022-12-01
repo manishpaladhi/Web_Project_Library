@@ -10,6 +10,9 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+        <link rel="icon" href="/download.png">
+
+
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -30,7 +33,7 @@
 
         <style>
             body {
-                background-color: palegoldenrod ;
+                background-color: rgb(48, 46, 46) ;
                 width: 100vw;
                 height: 100vh;
                 justify-content: center;
@@ -42,13 +45,13 @@
                 width: 500px;
                 /* display: flex; */
                 align-items: center;
-                background-color: rgb(48, 46, 46);
+                background-color: palegoldenrod;
                 border-radius: 15px;
                 padding: 25px 10px;
                 box-shadow: 0 0 15px rgb(80, 79, 79);
                 margin-bottom : 200px;
                 margin-top: 5px;
-                color: white;
+                color: black;
         }
 
 
@@ -101,7 +104,7 @@ li a:hover:not(.active) {
 
 <ul>
   <li><a class="active" href="/dashboard">Back to Dashboard Page</a></li>
-  <li style="float:right"><a href="/">Logout</a></li>
+  <li style="float:right"><a href="{{ route('logout') }}" @click.prevent="$root.submit();"> {{ __('Log Out') }} </a></li>
   <li style="float:right"><a href="/user/profile">Profile</a></li>
  
 </ul>
@@ -175,5 +178,5 @@ li a:hover:not(.active) {
             </button>
         </form>
     </div>
-
+    @include('footer')
 

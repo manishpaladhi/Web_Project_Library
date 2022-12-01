@@ -13,8 +13,8 @@ class MainController extends Controller
     public function serp(Request $request)
     {   
        $query_string = $request->get("p");
-       $p = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $query_string);
-          if ($query_string != "") {
+       $p = preg_replace('/[^A-Za-z0-9 ]/', '', $query_string);
+       if ($query_string != "") {
               $searchParams = [
                 'index' => 'project_index',
                 'from' => 0,
@@ -39,8 +39,8 @@ class MainController extends Controller
     public function serplogin(Request $request)
         {   
         $query_string = $request->get("p");
-        $p = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $query_string);
-            if ($query_string != "") {
+        $p = preg_replace('/[^A-Za-z0-9 ]/', '', $query_string);
+        if ($query_string != "") {
                 $searchParams = [
                     'index' => 'project_index',
                     'from' => 0,
@@ -69,7 +69,7 @@ class MainController extends Controller
 
     public function openpdf($idvalue)
   {
-      $file_path = "/Users/manish/Desktop/Web_Project_Library/storage/app/public/PDF/"."$idvalue";
+      $file_path = "/Users/manish/test_2/storage/app/public/PDF/"."$idvalue";
 
         header('Content-type: application/pdf');
         header('Content-Disposition: inline; filename="' . $file_path . '"');
@@ -120,7 +120,7 @@ class MainController extends Controller
         $query_string = $request->get("p");
 
         
-        $p = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $query_string);
+        $p = preg_replace('/[^A-Za-z0-9 ]/', '', $query_string);
       
           if ($query_string != "") {
               $searchParams = [
@@ -144,6 +144,10 @@ class MainController extends Controller
     }
   }
 
+      function logout()
+    {
+        Auth::logout();
+        return redirect('/welcome');
+    }
   
-
 }

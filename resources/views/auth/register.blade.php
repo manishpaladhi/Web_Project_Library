@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <link rel="icon" href="/download.png">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
@@ -18,16 +21,14 @@
             margin-left: 50px;
             margin-top: 40px;
             
-           
-    
         
         }
         .container{
             width: 400px;
             display: flex;
             flex-direction: column;
-            margin: auto;
-            margin-left: 480px;
+            margin: 0 auto;
+           
             margin-top: 100px;
             align-items: center;
             background-color: rgb(22, 21, 21);
@@ -147,6 +148,7 @@
 
     
 </body>
-
+<br><br><br><br><br><br><br>
+@include('footer')
 </html>
 

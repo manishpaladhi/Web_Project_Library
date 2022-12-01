@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+
+
+    <link rel="icon" href="/download.png">
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +18,7 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
         
-
+        </head>
         <!-- Styles -->
         <style>
             /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -85,6 +89,8 @@
                 position: absolute;
                 top: -7px;
                 right: 6px;
+
+                margin: 0 auto;
                 
         }
             .btn-search:focus ~ .input-search{
@@ -106,7 +112,7 @@
 </style>
 
 
-</head>
+
 
     <body>
 
@@ -121,10 +127,12 @@
     </div>
 
     </body>
+    
 
 </html>
     
 </x-app-layout>
+
 
 
 
