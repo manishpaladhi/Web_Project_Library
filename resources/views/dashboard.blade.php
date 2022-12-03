@@ -6,7 +6,7 @@
     <head>
 
 
-    <link rel="icon" href="/download.png">
+    <link rel="icon" href="/favicon.ico">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,7 +122,7 @@
         
             <input type="text"  class="input-search" placeholder="Type to Search..."  name="p" required/>
             <button type="submit" class="btn-search"><i class="fa fa-search" ></i></button>
-
+            
         </form>
     </div>
 

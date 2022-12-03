@@ -6,13 +6,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="/download.png">
+        <link rel="icon" href="/favicon.ico">
 
         <title>Digital Library</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
        
 
@@ -45,7 +47,7 @@
             color: white;
             text-align: center;
             
-            margin:150px auto;
+            margin:0px auto;
            
             padding: 10px;
             width: 500px;
@@ -89,7 +91,7 @@
  
             margin:0 auto;
             padding: 10px;
-            margin-top: 50px;
+            margin-top: 100px;
             margin-left: 450px;
             width: 700px;
 
@@ -166,7 +168,7 @@
     
     <div class="container">
         <div class="buttons">
-            <h2>Digital Library</h2>
+            <h2>Digital <span class="auto-input"></span></h2>
             
             @if (Route::has('login'))
                 <div class=" ">
@@ -188,6 +190,15 @@
 
 
 
+    <script>
+        var typed = new Typed(".auto-input", {
+            strings: ["Library", "Search Engine"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true
+        })
+        </script>
+
 
 
 
@@ -204,6 +215,7 @@
 
     </body>
 
+
 <br>
 <br>
 <br>
@@ -215,6 +227,17 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
     @include('footer') 
 </html>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="/download.png">
+        <link rel="icon" href="/favicon.ico">
 
 
         <title>Digital Library</title>
@@ -308,6 +308,7 @@
     ?>
 
 </div>
+<br>
 @include('footer')
 
 <script src="https://cdn.jsdelivr.net/mark.js/7.0.0/jquery.mark.min.js"></script>

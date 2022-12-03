@@ -13,10 +13,10 @@
                 @if ($showingConfirmation)
                     {{ __('Finish enabling two factor authentication.') }}
                 @else
-                    {{ __('You have enabled two factor authentication.') }}
+                    {{ __('') }}
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                {{ __('') }}
             @endif
         </h3>
 

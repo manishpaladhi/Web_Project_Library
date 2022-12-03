@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="icon" href="/download.png">
+    <link rel="icon" href="/favicon.ico">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@
             flex-direction: column;
             margin: 0 auto;
            
-            margin-top: 100px;
+            margin-top: 70px;
             align-items: center;
             background-color: rgb(22, 21, 21);
             border-radius: 15px;
@@ -82,11 +82,48 @@
             background-color: silver;
         }
 
+        ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+              }
+
+              li {
+                float: left;
+                border-right:1px solid #bbb;
+                
+              }
+
+              li:last-child {
+                border-right: none;
+              }
+
+              li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+              }
+
+                li a:hover:not(.active) {
+                  background-color: #111;
+                }
+
 
   </style>
 
 
 <body>
+        
+
+        <ul>
+            <li><a class="active" href="/">Back to Welcome Page</a></li>
+            <li style="float:right"><a href="/register">Register</a></li>
+            <li style="float:right"><a href="/login">Login</a></li>
+        </ul>
 
     <div class="container">
         <h2>Registration Form</h2>
@@ -148,7 +185,7 @@
 
     
 </body>
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 @include('footer')
 </html>
 

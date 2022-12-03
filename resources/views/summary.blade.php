@@ -42,9 +42,35 @@
                     padding: 25px 10px;
                     box-shadow: 0 0 15px rgb(80, 79, 79);
                     margin: 0 auto;
+                    
            
 
                 }
+
+                .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 70px 20px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
        
 
    
@@ -53,6 +79,7 @@
 </head>
 
 <body>
+    <br>
 
     <div class="container">   
     <?php
@@ -75,8 +102,7 @@
             ];
 
         $response = $client->search($query);
-
-
+        
     
         foreach( $response['hits']['hits'] as $source){
           $etd_file_id = (isset($source['_source']['etd_file_id'])? $source['_source']['etd_file_id'] : "");
@@ -93,7 +119,7 @@
           $pdf = (isset($source['_source']['pdf']) ? $source['_source']['pdf'] : ""); 
           $wiki_terms = (isset($source['_source']['wiki_terms']) ? $source['_source']['wiki_terms'] : ""); 
 
-    
+  
 
             echo "<tr>
             <td>
@@ -131,6 +157,14 @@
       ?>
   </div>
 
+  <!-- <button class="button button1" onclick="window.location.href='http://127.0.0.1:8000/serplogin';">Go Back</button> -->
+ 
+  
+  <form action="http://127.0.0.1:8000/serplogin" method="POST" target="_blank">
+         <button type="submit">Click me</button>
+        </form>
+
+  <br>
 </body>
 </x-app-layout>
 

@@ -44,9 +44,14 @@ Route::group(['middleware'=>['XSS']], function(){
     Route::post('/serp', 'App\Http\Controllers\MainController@serp');
 
     Route::post('/serplogin', 'App\Http\Controllers\MainController@serplogin');
+
+    Route::get('/etd_summary','App\Http\Controllers\MainController@etd_summary');
 });
 
 
+Route::get('/gettoken', 'App\Http\Controllers\MainController@getTokenapi');
+
+Route::get('/search', 'App\Http\Controllers\MainController@apisearch');
 
 
 
@@ -61,7 +66,7 @@ Route::get('/insert', 'App\Http\Controllers\MainController@insert');
 
 Route::post('/upload_data', 'App\Http\Controllers\MainController@upload_data');
 
-Route::get('/etd_summary','App\Http\Controllers\MainController@etd_summary');
+
 
 Route::get('/openpdf/{idvalue}','App\Http\Controllers\MainController@openpdf');
 

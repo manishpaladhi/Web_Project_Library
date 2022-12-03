@@ -11,10 +11,6 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
         <link rel="icon" href="/download.png">
-
-
-
-
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css"/>
@@ -114,7 +110,8 @@ li a:hover:not(.active) {
         
     </body>
 </html>
-
+<br>
+<br>
 <form action="/upload_data" method="POST" role="add">
   {{ csrf_field() }}
   <div class="container">

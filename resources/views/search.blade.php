@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="/download.png">
+        <link rel="icon" href="/favicon.ico">
 
         <title>Digital Library</title>1ß
 
@@ -127,6 +127,7 @@
                 padding: 0;
                 overflow: hidden;
                 background-color: #333;
+                margin-top: -20px;
               }
 
               li {
@@ -281,7 +282,7 @@
                     </thead>
                     <tbody>';
 
-            foreach( $response['hits']['hits'] as $source){
+            foreach($response['hits']['hits'] as $source){
                     $etd_file_id = (isset($source['etd_file_id'])? $source['etd_file_id'] : "");
                     $year= (isset($source['_source']['year'])? $source['_source']['year'] : "");
                     $author= (isset($source['_source']['author'])? $source['_source']['author'] : "");
@@ -329,8 +330,9 @@
 }
 
 ?>
-
 </div>
+<br>
+<br>
 @include('footer')
 
 <script>
