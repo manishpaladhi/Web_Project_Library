@@ -1,6 +1,5 @@
 
-<x-app-layout>
-
+@include('navigation-menu')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -31,12 +30,12 @@
            body {
                 
 
-                background-color: rgb(48, 46, 46);
+                background-color: palegoldenrod;
                 font-family:'Courier New', Courier, monospace;
            }
 
            
-
+/* 
            .container{
                     align-items: center;
                     background-color: palegoldenrod;
@@ -47,7 +46,7 @@
                    
 
                     
-                }
+                } */
 
                 .button {
   background-color: palegoldenrod;
@@ -66,7 +65,7 @@
 .button1 {
   background-color: white; 
   color: black; 
-  border: 2px solid #4CAF50;
+  border: 2px solid black;
 }
 
 .button1:hover {
@@ -142,13 +141,15 @@
                 ]
             ];
 
-            function highlightWords($text,$word,$l) {
+            function highlightWords($t,$word,$l) {
                 $get = $l;
-                $text = preg_replace('#'. preg_quote($word) .'#i', '<div class="tooltip"> <span style="background-color: white;">\\0</span> 
-                <span class="tooltiptext"><a href = '.$get.'>'.$get.'</a></span>
-                </div> ', $text);
+                $t = preg_replace('#'. preg_quote($word) .'#i', 
+                '<div class="tooltip"> 
+                    <span style="background-color: white;">\\0</span> 
+                    <span class="tooltiptext"><a href = '.$get.'>'.$get.'</a></span>
+                </div> ', $t);
              
-                return $text;
+                return $t;
           }
 
 
@@ -202,36 +203,36 @@
             <br>
             </td>";
 
-            $arr1 = json_decode($wiki_terms, true);
-            $terms_arr = array();
-            if($arr1!=null)
+            $decode_array = json_decode($wiki_terms, true);
+
+            $terms_array = array();
+
+            if($decode_array!=null)
             {
-            foreach ($arr1 as $item)
+                foreach ($decode_array as $generate)
             {
-            $terms_arr[]= $item['term'];
-            $url_arr[]=$item['url'];
+                $terms_array[]= $generate['term'];
+                $url_array[]=$generate['url'];
             }
-            $c = count ($terms_arr);
-            for( $i = 0; $i < $c; $i++)
+                $counter = count ($terms_array);
+
+            for( $m = 0; $m < $counter; $m++)
             {
-            $abstract= highlightWords($abstract, $terms_arr[$i],$url_arr[$i]);
+                $abstract= highlightWords($abstract, $terms_array[$m],$url_array[$m]);
             }
 
     
   }
     echo "<b>Abstract :</b> ".$abstract."";
-  }
-        
-          
+  }   
       ?>
   </div>
 
+<br>  
   <button onclick="history.back()" class="button button1" >Go Back</button>
-  
-
   <br>
 </body>
-</x-app-layout>
+@include('footer')
 
 
 

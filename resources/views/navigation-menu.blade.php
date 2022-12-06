@@ -21,19 +21,13 @@
                 width: 100vw;
                 height: 100vh;
                 justify-content: center;
+                margin-top:-1px;
+                margin-left: -0px;
                 align-items: center;
                 font-family:'Courier New', Courier, monospace;
           
         }
-            .container{
-                width: 1400px;
-                flex-direction: column;
-                align-items: center;
-                background-color: palegoldenrod;
-                border-radius: 15px;
-                padding: 25px 10px;
-                box-shadow: 0 0 15px rgb(80, 79, 79);
-        }
+            
 
             
 
