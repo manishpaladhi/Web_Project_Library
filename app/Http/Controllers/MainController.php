@@ -22,7 +22,7 @@ class MainController extends Controller
        $p = preg_replace('/[^A-Za-z0-9 ]/', '', $query_string);
        if ($query_string != "") {
               $searchParams = [
-                'index' => 'project_index',
+                'index' => 'metadata',
                 'from' => 0,
                 'size' => 501,
                 'type' => '_doc',
@@ -48,7 +48,7 @@ class MainController extends Controller
         $p = preg_replace('/[^A-Za-z0-9 ]/', '', $query_string);
         if ($query_string != "") {
                 $searchParams = [
-                    'index' => 'project_index',
+                    'index' => 'metadata',
                     'from' => 0,
                     'size' => 501,
                     'type' => '_doc',
@@ -99,7 +99,7 @@ class MainController extends Controller
         $advisor               = $request->input('advisor');
 
         $params = [
-            'index' => 'project_index',
+            'index' => 'metadata',
             'type' => '_doc',
             'body'  => [
                     'title' => $title,
@@ -132,7 +132,7 @@ class MainController extends Controller
       
           if ($query_string != "") {
               $searchParams = [
-              'index' => 'project_index',
+              'index' => 'metadata',
               'body' => [
                 'query' => [
                   'bool' =>[
@@ -161,17 +161,24 @@ class MainController extends Controller
 
     public function getTokenapi()
     {
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
+        {
             $users = Auth::user();
-            if ($users->getRememberToken() == NULL) {
+            if ($users->getRememberToken() == NULL) 
+            {
                 $token = Str::random(15);
                 $users->setRememberToken($token);
                 $users->save();
             }
-            return response()->json(['key' => $users->getRememberToken()], 200);
+
+            return response()->json(
+              ['Key Generated' => $users->getRememberToken()], 200);
         }
-        else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+
+        else
+        {
+            return response()->json(
+              ['error'=>'Unauthorised'], 401);
         }
         
     }
@@ -179,57 +186,70 @@ class MainController extends Controller
 
     public function apisearch()
     {
-      $terms = request('query');
-      $limit = request('n');
+      $collected_token = (array)DB::select('select remember_token from users');
+      $token_json = json_encode($collected_token);
+      $words = request('query');
+      $limit = request('l');
       $key = request('key');
       $client =  ClientBuilder::create()->build();
       $users = Auth::user();
-      $resultids = (array)DB::select('select remember_token from users');
-      $resultstr = json_encode($resultids);
 
-      if ($key != NULL && str_contains($resultstr, $key)) {
+      if ((str_contains($token_json, $key)) && $key != NULL) 
+      {
 
                   $searchParams = [
-                    'index' => 'project_index',
+                    'index' => 'metadata',
                     'from' => 0,
                     'size' => $limit,
                     'type' => '_doc',
                     'body' => [
-                        'query' => [
+                      'query' => [
                             'multi_match' => [
-                                'query' => $terms,
-                                'fields' => ['author','title','$etd_file_id','$year','university','degree','program','abstract','advisor','wiki_terms'],
+                                'query' => $words,
+                                'fields' => ['author','university','degree','program','title','$etd_file_id','$year','abstract','advisor','wiki_terms'],
     
-                ]
                             ]
-                    ]
+                            ]
+                            ]
                             ];
 
+          $test_page = 1;
           $results = $client->search($searchParams);
           $count = $results['hits']['total']['value'];
-          $res = $results['hits']['hits'];
-          $rank = 1;
-         foreach( $res as $r)
+          $result_store = $results['hits']['hits'];
+
+
+          
+         foreach( $result_store as $store)
           {       
-              $title[$rank]['title'] = $results['hits']['hits'][$rank-1]['_source']['title'];
-              $author[$rank]['author'] = $results['hits']['hits'][$rank-1]['_source']['author'];
-              $etd[$rank]['etd_file_id'] = $results['hits']['hits'][$rank-1]['_source']['etd_file_id'];
-              $year[$rank]['year'] = $results['hits']['hits'][$rank-1]['_source']['year'];
-              $univ[$rank]['university'] = $results['hits']['hits'][$rank-1]['_source']['university'];
-              $deg[$rank]['degree'] = $results['hits']['hits'][$rank-1]['_source']['degree'];
-              $prog[$rank]['program'] = $results['hits']['hits'][$rank-1]['_source']['program'];
-              $abs[$rank]['abstract'] = $results['hits']['hits'][$rank-1]['_source']['abstract'];
-              // $advi[$rank]['advisor'] = $results['hits']['hits'][$rank-1]['_source']['advisor'];
-              $wiki[$rank]['wiki_terms'] = $results['hits']['hits'][$rank-1]['_source']['wiki_terms'];
-              $rank+=1;
-              if( empty($title) || empty($author) || empty($etd) || empty($year) || empty($univ) || empty($deg) || empty($prog) || empty($abs) || empty($wiki) )
-              {
-                echo " Either of the fields are missing !";
-              }
+              
+              $json_format[$test_page]['abstract'] = $results['hits']['hits'][$test_page-1]['_source']['abstract'];
+              // $json_format[$test_page]['advisor'] = $results['hits']['hits'][$test_page-1]['_source']['advisor'];
+              $json_format[$test_page]['wiki_terms'] = $results['hits']['hits'][$test_page-1]['_source']['wiki_terms'];
+              $json_format[$test_page]['etd_file_id'] = $results['hits']['hits'][$test_page-1]['_source']['etd_file_id'];
+              $json_format[$test_page]['year'] = $results['hits']['hits'][$test_page-1]['_source']['year'];
+              $json_format[$test_page]['title'] = $results['hits']['hits'][$test_page-1]['_source']['title'];
+              $json_format[$test_page]['author'] = $results['hits']['hits'][$test_page-1]['_source']['author'];
+              $json_format[$test_page]['program'] = $results['hits']['hits'][$test_page-1]['_source']['program'];
+              $json_format[$test_page]['university'] = $results['hits']['hits'][$test_page-1]['_source']['university'];
+              $json_format[$test_page]['degree'] = $results['hits']['hits'][$test_page-1]['_source']['degree'];
+              
+              $test_page+=1;
+              // if( empty($title) || empty($author) || empty($etd) || empty($year) || empty($univ) || empty($deg) || empty($prog) || empty($abs) || empty($wiki) )
+              // {
+              //   echo " Either of the fields are missing !";
+              // }
           }
-          return response()->json(['response'=>$title,$author,$etd,$year,$univ,$deg,$prog,$abs,$wiki], 200);
-      } else {
-          return response()->json(['error' => 'UnAuthorised Access'], 401);
+
+          return response()->json(
+            ['response' => $json_format], 200);
+
+      } 
+      
+      else 
+      {
+          return response()->json(
+            ['error' => 'You are not Authorised to Access query'.$words.',since there is no key.'], 401);
       }
   }
 

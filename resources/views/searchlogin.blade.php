@@ -206,7 +206,7 @@
             $client =  Elastic\Elasticsearch\ClientBuilder::create()->build();
             $word = strip_tags($_POST['p']);
             $params = [
-                'index' => 'project_index',
+                'index' => 'metadata',
                 'from' => 0,
                 'size' => 501,
                 'type' => '_doc',

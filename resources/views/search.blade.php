@@ -192,16 +192,6 @@
 
         </style>
 
-        <style>
-            .cover {
-                    height: 50px;
-                    width: 250px;
-                    border-style: none;
-                    background-color: black;
-                    margin-left: 900px;
-                    margin-top: 210px;
-                }
-        </style>
 
 
     <body>
@@ -230,7 +220,7 @@
             $client =  Elastic\Elasticsearch\ClientBuilder::create()->build();
             $word = strip_tags($_POST['p']);
             $params = [
-                'index' => 'project_index',
+                'index' => 'metadata',
                 'from' => 0,
                 'size' => 501,
                 'type' => '_doc',
@@ -257,7 +247,6 @@
                 <label for="name">SEARCH HERE: </label>
                 <input type="text"  class="input-search" placeholder="Type to Search..."  name="p" value="<?php echo $p?>" required/>
                 <button type="submit" class="btn-search"><i class="fa fa-search" ></i></button>
-
 
             </form>
 </div>
